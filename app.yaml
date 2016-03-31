@@ -1,0 +1,22 @@
+runtime: python27
+api_version: 1
+threadsafe: true
+
+# Handlers match in order, put above the default handler.
+handlers:
+- url: /css
+  static_dir: css
+
+- url: /fonts
+  static_dir: fonts
+
+- url: /js
+  static_dir: js
+
+- url: /.*
+  script: hotestprogrammerhumor.app
+
+libraries:
+- name: webapp2
+  version: latest
+
