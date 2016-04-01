@@ -18,6 +18,18 @@
 
 <body>
 
+<h2>Brandon Swanson Assignment 1: Hello Cloud </h2>
+This web app displays the listing that currently has the highest score on the ProgrammerHumor subreddit
+<br>
+It also displays what was the the hottest listing at scheduled times
+<br><br>
+This web app is built with Google App Engine and makes use of 
+<a href="https://cloud.google.com/appengine/docs/python/urlfetch/">urlfetch</a>, 
+<a href="https://cloud.google.com/appengine/docs/python/ndb/">data store</a>, 
+and <a href="https://cloud.google.com/appengine/docs/python/config/cron">cron jobs</a>
+<br>
+View the source at <a href="https://github.com/swanyriver/Hello-Cloud-">https://github.com/swanyriver/Hello-Cloud-</a>
+<br><br>
 <div class="panel panel-default listing_panel">
   <div class="panel-heading"> 
   <h3 class="panel-title"> Hottest Programming Humor Joke on Reddit 
@@ -31,7 +43,7 @@
   </div>
 </div>
 <br><br>
-<h2> Snapshots of the hottest listings on <a href="https://www.reddit.com/r/ProgrammerHumor/"> reddit.com/r/ProgrammerHumor/ </a> </h2>
+<h3> Snapshots of the hottest listings on <a href="https://www.reddit.com/r/ProgrammerHumor/"> reddit.com/r/ProgrammerHumor/ </a> </h3>
 <hr>
 
 {% for listing in listings %}
