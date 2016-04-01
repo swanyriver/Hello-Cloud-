@@ -3,22 +3,26 @@
 {% autoescape true %}
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>What's funny on Reddit?</title>
+  <title>What's funny on Reddit?</title>
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+  <!-- Bootstrap Core CSS -->
+  <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom CSS -->
-    <link href="css/custom.css" rel="stylesheet">
+  <!-- Custom CSS -->
+  <link href="css/custom.css" rel="stylesheet">
 </head>
 
 <body>
 
-
+<a href="{{ Hotestlisting.url }}"> {{ Hotestlisting.title }} </a> <br>
+{{ Hotestlisting.score }} <br>
+<img src="{{ Hotestlisting.thumbnail }}"> <br>
+{{Hotestlisting.timestamp.strftime("%d %b %Y %I:%M:%S %p")}} (PST)
 
 </body>
 </html>
+{% endautoescape %}
