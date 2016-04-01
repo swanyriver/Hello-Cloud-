@@ -17,10 +17,6 @@
 </head>
 
 <body>
-<!-- <form action="" method="POST">
-  <input type="hidden" name="action" value="getListing">
-  <button type="submit">save this one</button>
-</form> -->
 
 <div class="panel panel-default listing_panel">
   <div class="panel-heading"> 
@@ -29,12 +25,12 @@
   </h3> </div>
   <div class="panel-body">
     <img src="{{ Hotestlisting.thumbnail }}" class="listing_thumbnail">
-    <a class="listingtitle" href="{{ Hotestlisting.url }}"> {{ Hotestlisting.title }} </a>
+    <a class="listing_title" href="{{ Hotestlisting.url }}"> {{ Hotestlisting.title }} </a>
     <br> <br>
     <span class="label label-primary listing_score"> Score <span class="badge">{{ Hotestlisting.score }}</span> </span>
   </div>
 </div>
-
+<br><br>
 <h2> Snapshots of the hottest listings on <a href="https://www.reddit.com/r/ProgrammerHumor/"> reddit.com/r/ProgrammerHumor/ </a> </h2>
 <hr>
 
@@ -45,7 +41,7 @@
     </h3> </div>
     <div class="panel-body">
       <img src="{{ listing.thumbnail }}" class="listing_thumbnail">
-      <a class="listingtitle" href="{{ listing.url }}"> {{ listing.title }} </a>
+      <a class="listing_title" href="{{ listing.url }}"> {{ listing.title }} </a>
       <br> <br>
       <span class="label label-primary listing_score"> Score <span class="badge">{{ listing.score }}</span> </span>
     </div>

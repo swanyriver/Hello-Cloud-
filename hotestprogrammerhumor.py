@@ -9,7 +9,6 @@ from google.appengine.api import urlfetch
 
 LISTINGS_KEY = 'listings'
 API_URL = 'https://www.reddit.com/r/ProgrammerHumor/hot.json?limit=1'
-GET_LISTING = "getListing"
 
 JINJA_ENVIRONMENT = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -63,7 +62,7 @@ def getListing():
   listing.score = listingJSON['score']
   listing.url = listingJSON['url']
   listing.title = listingJSON['title']
-  listing.timestampString = datetime.datetime.now(PDT).strftime("%d %b %Y %I:%M:%S %p")
+  listing.timestampString = datetime.datetime.now(PDT).strftime("%d %b %Y %I:%M %p")
 
   return listing
 
@@ -86,22 +85,20 @@ class MainPage(webapp2.RequestHandler):
     template = JINJA_ENVIRONMENT.get_template('index.html')
     self.response.write(template.render(templateVars))
 
-  def post(self):
+class grab(webapp2.RequestHandler):
+  def get(self):
     self.response.headers['Content-Type'] = 'text/plain'
 
-    if self.request.get('action') == GET_LISTING:
-      Hotestlisting = getListing()
-      if not Hotestlisting:
-        self.response.set_status(503)
-        self.response.write("Unable to retrieve listing")
-        return
-      Hotestlisting.put()
-      self.response.set_status(200)
-      self.response.write("Saved listing to datastore")
+    Hotestlisting = getListing()
+    if not Hotestlisting:
+      self.response.set_status(503)
+      self.response.write("Unable to retrieve listing")
       return
-
-
+    Hotestlisting.put()
+    self.response.set_status(200)
+    self.response.write("Saved listing to datastore")
+    return
 
 app = webapp2.WSGIApplication([
-  ('/', MainPage),
+  ('/', MainPage), ('/grab/', grab)
 ], debug=True)

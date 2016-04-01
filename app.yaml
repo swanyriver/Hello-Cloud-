@@ -19,6 +19,10 @@ handlers:
 - url: /.*
   script: hotestprogrammerhumor.app
 
+- url: /grab/
+  script: hotestprogrammerhumor.grab
+  login: admin
+
 libraries:
 - name: webapp2
   version: latest

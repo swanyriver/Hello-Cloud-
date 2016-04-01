@@ -1,0 +1,4 @@
+cron:
+- description: grab the hottest listing right now
+  url: /grab/
+  schedule: every 20 minutes
