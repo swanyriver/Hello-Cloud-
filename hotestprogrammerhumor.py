@@ -38,14 +38,15 @@ class Listing (ndb.Model):
   score = ndb.IntegerProperty(indexed=False)
   url = ndb.StringProperty(indexed=False)
   title = ndb.StringProperty(indexed=False)
-  timestamp = ndb.DateTimeProperty(indexed=False)
+  timestampString = ndb.StringProperty(indexed=False)
+  timeAdded = ndb.DateTimeProperty(auto_now_add=True)
 
 class errorListing():
   thumbnail = "img/reddit503.jpg"
   score = 0
   url = ""
   title = "Server Error Please Try Again later"
-  timestamp = datetime.datetime.now(PDT)
+  timestampString = ""
 
 def getListing():
   listing = Listing(parent=ndb.Key('Listing', LISTINGS_KEY))
@@ -62,7 +63,7 @@ def getListing():
   listing.score = listingJSON['score']
   listing.url = listingJSON['url']
   listing.title = listingJSON['title']
-  listing.timestamp = datetime.datetime.now(PDT)
+  listing.timestampString = datetime.datetime.now(PDT).strftime("%d %b %Y %I:%M:%S %p")
 
   return listing
 
@@ -74,11 +75,12 @@ class MainPage(webapp2.RequestHandler):
 
     Hotestlisting = getListing() or errorListing()
 
-    #listingQuery = Listing.query()
+    listingQuery = Listing.query(ancestor=ndb.Key('Listing',LISTINGS_KEY)).order(-Listing.timeAdded)
+    listings = listingQuery.fetch()
 
     templateVars = {
       'Hotestlisting':Hotestlisting,
-      'listings':[Hotestlisting,Hotestlisting]
+      'listings':listings
     }
 
     template = JINJA_ENVIRONMENT.get_template('index.html')

@@ -17,11 +17,15 @@
 </head>
 
 <body>
+<!-- <form action="" method="POST">
+  <input type="hidden" name="action" value="getListing">
+  <button type="submit">save this one</button>
+</form> -->
 
 <div class="panel panel-default listing_panel">
   <div class="panel-heading"> 
   <h3 class="panel-title"> Hottest Programming Humor Joke on Reddit 
-    <div class="listing_time">  <span class="label label-danger">NOW!</span> {{Hotestlisting.timestamp.strftime("%d %b %Y %I:%M:%S %p")}} (PST)  </div>
+    <div class="listing_time">  <span class="label label-danger">NOW!</span> {{Hotestlisting.timestampString}} (PST)  </div>
   </h3> </div>
   <div class="panel-body">
     <img src="{{ Hotestlisting.thumbnail }}" class="listing_thumbnail">
@@ -37,7 +41,7 @@
 {% for listing in listings %}
   <div class="panel panel-default listing_panel">
     <div class="panel-heading"> <h3 class="panel-title snapshot_time">
-      {{listing.timestamp.strftime("%d %b %Y %I:%M:%S %p")}} (PST)
+      {{listing.timestampString}} (PST)
     </h3> </div>
     <div class="panel-body">
       <img src="{{ listing.thumbnail }}" class="listing_thumbnail">
