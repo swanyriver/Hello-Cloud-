@@ -18,10 +18,35 @@
 
 <body>
 
-<a href="{{ Hotestlisting.url }}"> {{ Hotestlisting.title }} </a> <br>
-{{ Hotestlisting.score }} <br>
-<img src="{{ Hotestlisting.thumbnail }}"> <br>
-{{Hotestlisting.timestamp.strftime("%d %b %Y %I:%M:%S %p")}} (PST)
+<div class="panel panel-default listing_panel">
+  <div class="panel-heading"> 
+  <h3 class="panel-title"> Hottest Programming Humor Joke on Reddit 
+    <div class="listing_time">  <span class="label label-danger">NOW!</span> {{Hotestlisting.timestamp.strftime("%d %b %Y %I:%M:%S %p")}} (PST)  </div>
+  </h3> </div>
+  <div class="panel-body">
+    <img src="{{ Hotestlisting.thumbnail }}" class="listing_thumbnail">
+    <a class="listingtitle" href="{{ Hotestlisting.url }}"> {{ Hotestlisting.title }} </a>
+    <br> <br>
+    <span class="label label-primary listing_score"> Score <span class="badge">{{ Hotestlisting.score }}</span> </span>
+  </div>
+</div>
+
+<h2> Snapshots of the hottest listings on <a href="https://www.reddit.com/r/ProgrammerHumor/"> reddit.com/r/ProgrammerHumor/ </a> </h2>
+<hr>
+
+{% for listing in listings %}
+  <div class="panel panel-default listing_panel">
+    <div class="panel-heading"> <h3 class="panel-title snapshot_time">
+      {{listing.timestamp.strftime("%d %b %Y %I:%M:%S %p")}} (PST)
+    </h3> </div>
+    <div class="panel-body">
+      <img src="{{ listing.thumbnail }}" class="listing_thumbnail">
+      <a class="listingtitle" href="{{ listing.url }}"> {{ listing.title }} </a>
+      <br> <br>
+      <span class="label label-primary listing_score"> Score <span class="badge">{{ listing.score }}</span> </span>
+    </div>
+  </div>
+{% endfor %}
 
 </body>
 </html>

@@ -9,7 +9,7 @@ from google.appengine.api import urlfetch
 
 LISTINGS_KEY = 'listings'
 API_URL = 'https://www.reddit.com/r/ProgrammerHumor/hot.json?limit=1'
-
+GET_LISTING = "getListing"
 
 JINJA_ENVIRONMENT = jinja2.Environment(
   loader=jinja2.FileSystemLoader(os.path.dirname(__file__)),
@@ -74,13 +74,31 @@ class MainPage(webapp2.RequestHandler):
 
     Hotestlisting = getListing() or errorListing()
 
+    #listingQuery = Listing.query()
+
     templateVars = {
       'Hotestlisting':Hotestlisting,
-      'type':str(type(Hotestlisting.timestamp))
+      'listings':[Hotestlisting,Hotestlisting]
     }
 
     template = JINJA_ENVIRONMENT.get_template('index.html')
     self.response.write(template.render(templateVars))
+
+  def post(self):
+    self.response.headers['Content-Type'] = 'text/plain'
+
+    if self.request.get('action') == GET_LISTING:
+      Hotestlisting = getListing()
+      if not Hotestlisting:
+        self.response.set_status(503)
+        self.response.write("Unable to retrieve listing")
+        return
+      Hotestlisting.put()
+      self.response.set_status(200)
+      self.response.write("Saved listing to datastore")
+      return
+
+
 
 app = webapp2.WSGIApplication([
   ('/', MainPage),

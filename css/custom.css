@@ -1,0 +1,25 @@
+.listing_score {
+    padding: 10px;
+}
+
+.listing_panel {
+    width: 900px;
+    margin:25px;
+}
+
+.listing_thumbnail {
+    height:120px;
+    float:left;
+}
+
+.listing_panel .panel-body > * {
+    margin: 10px;
+}
+
+.listing_time {
+    float: right;
+}
+
+.snapshot_time {
+    text-align: right;
+}
